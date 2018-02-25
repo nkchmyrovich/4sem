@@ -21,31 +21,37 @@ bool comparator (const Statistics& s1, const Statistics& s2) {
 }
 
 int main(int argc, char const *argv[]) {
-	std::ifstream file("file.txt");
+	std::ifstream file("_file.txt");
 	if (!file.is_open()) {
+		std::cout << "ERROR: input file cannot be opened\n";
 		// кажется, что можно не делать close, если не получилось открыть файл
-		file.close();
+		//Ok
 		return 0;
 	}
 	std::string word;
 	std::map<std::string, int> myMap;
-	while (!file.eof()) try {
+	while (!file.eof()) {
 		file >> word; // только эта строка бросает исключения
 		/// судя по http://www.cplusplus.com/reference/istream/istream/operator%3E%3E/ вы ловите не единственный вариант
 		/// мне кажется, что для 1го упражнения в семестре можно не заморачиваться с исключениями здесь и убрать try/catch
+		//Ок
+
+		//Просто мне очень часто компилятор кидал это исключение std::length_error
+		//Так что я на всякий случай сделал try/catch
+
+		std::cout << word << "\n";
 		prepare(word);
 		if (word.size() == 0) continue;
 		myMap[word]++;
+
 		// зачем делать clear?
-		word.clear();
-	} catch (std::length_error) {
-		/// вроде это исключение бросается, если размер строки превышает max_size: 4294967291, что конечно нечасто
-		printf("ERROR: string length error\n");
+		//Ок, убрал
 	}
 	std::vector<Statistics> s;
 	Statistics elem;
 	// лучше const auto& it, чтобы подчеркнуть, что мы не намерены изменять myMap
-	for (auto& it : myMap) {
+	//Ок
+	for (const auto& it : myMap) {
 		elem.word = it.first;
 		elem.count = it.second;
 		s.push_back(elem);
@@ -53,7 +59,9 @@ int main(int argc, char const *argv[]) {
 	std::sort(s.begin(), s.end(), comparator);
 	std::ofstream file_output("output.txt");
 	if (!file_output.is_open()) {
-		file_output.close(); // ? вроде не нужно
+		// ? вроде не нужно
+		//Ок
+		std::cout << "ERROR: output file cannot be opened\n";
 		return 0;
 	}
 	for (size_t i = 0; i < NUMBER_OF_POPULAR_WORDS; i++) {
