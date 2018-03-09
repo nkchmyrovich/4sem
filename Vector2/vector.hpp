@@ -9,6 +9,10 @@
 
 struct Vector2 {
 	float x,y;
+	/*
+	можно написать Vector2() = default;
+	и в срр ничего не писать
+	*/
 	Vector2();
 	Vector2(float x, float y);
     Vector2 operator+ (const Vector2& other) const;
