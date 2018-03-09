@@ -12,10 +12,17 @@ Vector2::~Vector2 ()
 {}
 
 float Vector2::Len () const {
+	/*
+	fixit: пробелы вокруг бинарных операторов здесь и ниже по тексту
+	*/
 	return sqrt(x*x + y*y);
 };
 
 Vector2 Vector2::operator+ (const Vector2& other) const {
+	/*
+	fixit: ваш вариант будет работать, но можно чуть короче 
+	return Vector2(x + other.x, y + other.y);
+	*/
 	Vector2 result = Vector2();
 	result.x = x + other.x;
 	result.y = y + other.y;
