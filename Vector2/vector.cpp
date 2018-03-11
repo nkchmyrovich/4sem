@@ -1,80 +1,73 @@
 #include "vector.hpp"
 
-Vector2::Vector2 ()
-{}
-
 Vector2::Vector2 (float _x, float _y) :
 	x(_x),
 	y(_y)
-{}
-
-Vector2::~Vector2 () 
 {}
 
 float Vector2::Len () const {
 	/*
 	fixit: пробелы вокруг бинарных операторов здесь и ниже по тексту
 	*/
-	return sqrt(x*x + y*y);
+    //Ok
+	return sqrt(x * x + y * y);
 };
 
-Vector2 Vector2::operator+ (const Vector2& other) const {
+Vector2 Vector2::operator + (const Vector2& other) const {
 	/*
 	fixit: ваш вариант будет работать, но можно чуть короче 
 	return Vector2(x + other.x, y + other.y);
 	*/
-	Vector2 result = Vector2();
-	result.x = x + other.x;
-	result.y = y + other.y;
-	return result;
+    //Ok
+	return Vector2(x + other.x, y + other.y);
 }
 
-Vector2 Vector2::operator- (const Vector2& other) const {
+Vector2 Vector2::operator - (const Vector2& other) const {
     Vector2 result = Vector2();
 	result.x = x - other.x;
 	result.y = y - other.y;
 	return result;
 }
 
-Vector2& Vector2::operator+= (const Vector2& other) {
+Vector2& Vector2::operator += (const Vector2& other) {
     x += other.x;
     y += other.y;
     return *this;
 }
 
-Vector2& Vector2::operator-= (const Vector2& other) {
+Vector2& Vector2::operator -= (const Vector2& other) {
     x -= other.x;
     y -= other.y;
     return *this;
 }
 
-Vector2 Vector2::operator- () const {
+Vector2 Vector2::operator - () const {
     return Vector2(-x, -y);
 }
 
-float Vector2::operator* (const Vector2& other) const {
-    return x*other.x + y*other.y;
+float Vector2::operator * (const Vector2& other) const {
+    return x * other.x + y * other.y;
 }
 
-float operator^ (const Vector2& that, const Vector2& other) {
-    return that.x*other.y - that.y*other.x;
+float Vector2::operator ^ (const Vector2& other) const {
+    return x * other.y - y * other.x;
 }
 
-Vector2 Vector2::operator* (const float value) const {
-    return Vector2(x*value, y*value);
+Vector2 Vector2::operator * (const float value) const {
+    return Vector2(x * value, y * value);
 }
 
 Vector2 Vector2::operator/ (const float value) const {
-    return Vector2(x/value, y/value);
+    return Vector2(x / value, y / value);
 }
 
-Vector2 operator* (const float value, const Vector2& vec) {
-    return vec*value;
+Vector2 operator * (const float value, const Vector2& vec) {
+    return vec * value;
 }
 
 Vector2 Vector2::GetNorm () const {
     float norm = Len();
-    return Vector2(x/norm, y/norm);
+    return Vector2(x / norm, y / norm);
 }
 
 Vector2 Vector2::GetPerp () const{
