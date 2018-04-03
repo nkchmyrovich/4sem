@@ -6,15 +6,11 @@
 лишние инклюды не нужны. перенесите непосредственно туда, где используете
 */
 //Я использую функции sin, cos из math.h, заменю её на cmath
+// V: в заголовочном файле не используете. Используете в cpp. Вот там и нужен этот include 
 #include <cmath>
 
 struct Vector2 {
 	float x,y;
-	/*
-	можно написать Vector2() = default;
-	и в срр ничего не писать
-	*/
-    //Ок
 	Vector2() = default;
 	Vector2(float x, float y);
     Vector2 operator + (const Vector2& other) const;
@@ -23,10 +19,6 @@ struct Vector2 {
     Vector2& operator -= (const Vector2& other);
     Vector2 operator - () const;
     float operator * (const Vector2& other) const;
-	/*
-	а зачем было векторное произведение выносить наружу?
-	*/
-    //Действительно, нет смысла, исправил
     float operator ^ (const Vector2& other) const;
     Vector2 operator * (const float value) const;
     Vector2 operator / (const float value) const;
@@ -37,12 +29,5 @@ struct Vector2 {
     Vector2 GetNorm () const;
     Vector2 GetPerp () const;
     Vector2& Rotate (float angle);
-    Vector2 GetRotated (float angle) const;
-	
-	/*
-        fixit:
-        Компилятор сам сгенерирует за вас ровно такой же пустой деструктор.
-        Явно писать не нужно.
-        */
-	//Ok
+    Vector2 GetRotated (float angle) const;	
 };
