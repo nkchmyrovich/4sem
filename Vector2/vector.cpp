@@ -6,19 +6,10 @@ Vector2::Vector2 (float _x, float _y) :
 {}
 
 float Vector2::Len () const {
-	/*
-	fixit: пробелы вокруг бинарных операторов здесь и ниже по тексту
-	*/
-    //Ok
 	return sqrt(x * x + y * y);
 };
 
 Vector2 Vector2::operator + (const Vector2& other) const {
-	/*
-	fixit: ваш вариант будет работать, но можно чуть короче 
-	return Vector2(x + other.x, y + other.y);
-	*/
-    //Ok
 	return Vector2(x + other.x, y + other.y);
 }
 
