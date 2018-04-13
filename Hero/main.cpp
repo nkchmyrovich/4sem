@@ -7,6 +7,7 @@ float speedAbs = 5;
 
 sf::Vector2f& NormVector (sf::Vector2f& v) {
     float abs = sqrt(v.x * v.x + v.y * v.y);
+    // можно использовать /=
     v.x = v.x / abs;
     v.y = v.y / abs;
     return v;
@@ -24,11 +25,13 @@ int main()
     bool reachBottom = false;
     bool reachRight = false;
     bool reachLeft = false;
+    // всего одна пуля? так и задумывалось? кажется нужен std::vector из пуль
     Bullet bullet;
     Laser laser;
     bool shoot = false;
     while (window.isOpen())
     {
+        // fixit: дублирование кода ... уже для пуль было нечто похожее
         reachTop = (circle.getPosition().y <= 0);
         reachBottom = (circle.getPosition().y >= 500);
         reachRight = (circle.getPosition().x >= 700);
@@ -56,6 +59,7 @@ int main()
         
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left)) {
             if (!reachLeft)
+               // fixit: скорость движения героя зависит от fps 
                 circle.move(-1, 0);
         }
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right)) {
